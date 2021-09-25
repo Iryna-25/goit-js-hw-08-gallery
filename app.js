@@ -75,28 +75,41 @@ const createdPreviewGallery = galleryItems.reduce((acc, img) => {
 
 galleryRef.insertAdjacentHTML('beforeend', createdPreviewGallery);
 
-galleryRef.addEventListener('click', (evt) => {
+galleryRef.addEventListener('click', (e) => {
   galleryItems.forEach((el) => {
-    if (evt.target.alt === el.description) {
+    if (e.target.alt === el.description) {
       imageLigthBoxRef.src = el.original
       imageLigthBoxRef.alt = el.description
     }
     ligthboxRef.classList.add('is-open')
 })})
 
-ligthboxRef.addEventListener('click', (evt) => {
-  if (evt.target.nodeName === 'IMG') {
+ligthboxRef.addEventListener('click', (e) => {
+  if (e.target.nodeName === 'IMG') {
     return
   }
-  if (evt.target.nodeName === 'BUTTON') {
+  if (e.target.nodeName === 'BUTTON') {
     ligthboxRef.classList.remove('is-open')
     imageLigthBoxRef.src = '';
     imageLigthBoxRef.alt = '';
-    console.log('нажал на кнопку')
+    console.log('кнопка')
+    return
+  }
+  if (e.target.nodeName === 'Escape') {
+    ligthboxRef.classList.remove('is-open')
+    imageLigthBoxRef.src = '';
+    imageLigthBoxRef.alt = '';
+    console.log('esc')
     return
   }
   ligthboxRef.classList.remove('is-open')
   imageLigthBoxRef.src = '';
   imageLigthBoxRef.alt = '';
-  console.log('нажал на бекг')
+  console.log('фон')
 })
+
+// function onPressEsc(evt) {
+//   if(evt.code === 'Escape'){
+//     addEventListener();
+//   }
+// }
